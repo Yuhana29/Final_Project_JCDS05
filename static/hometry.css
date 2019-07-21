@@ -1,0 +1,38 @@
+body {
+    background-image: url(https://steamuserimages-a.akamaihd.net/ugc/143382451905631757/2AA2DC939D138332B6A0CB87E25C133753A64B5F/);
+    font-family: Verdana;
+    color: white
+}
+h1 {
+    text-align: center;
+    font-size: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px
+}
+
+p {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px
+}
+
+
+
+/* unvisited link */
+a:link {
+  color: red;
+}
+
+/* visited link */
+a:visited {
+  color: darkblue;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: green;
+}

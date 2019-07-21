@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HOME</title>
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="{{ url_for('static', filename='hometry.css') }}"
+    />
+    <link
+</head>
+<body>
+    <h1 style="background-color: darkblue;">CELLPHONE COST RANGE PREDICTION</h1>
+    <center>
+        <img 
+            src="https://pngriver.com/wp-content/uploads/2018/02/download-mobile-cell-phone-in-hand-PNG-transparent-images-transparent-backgrounds-PNGRIVER-COM-Falcon_Elite_x3_q3_fy16_KSP3_feature5.png" style="width:50%; height:auto";
+        />
+
+        <form action="http://localhost:1234/post" method="post">
+            <p> 
+                <label for=""> <strong>RAM:</strong></label>
+                <select name="ram" id="">
+                    <option value="2000">2 GB</option>
+                    <option value="4000">4 GB</option>
+                    <option value="6000">6 GB</option>
+                    <option value="8000">8 GB</option>
+                </select>
+
+                <label for=""> <strong>Front Camera: </strong></label>
+                <select name="fc" id="">
+                    <option value="2">2 MP</option>
+                    <option value="5">5 MP</option>
+                    <option value="8">8 MP</option>
+                    <option value="12">12 MP</option>
+                    <option value="16">16 MP</option>
+                    <option value="20">20 MP</option>
+                </select>
+
+                <label for=""> <strong>Primary Camera: </strong></label>
+                <select name="pc" id="">
+                    <option value="2">2 MP</option>
+                    <option value="5">5 MP</option>
+                    <option value="8">8 MP</option>
+                    <option value="12">12 MP</option>
+                    <option value="16">16 MP</option>
+                    <option value="20">20 MP</option>
+                </select>
+            </p>
+
+            <p> 
+                <label for=""> <strong>Battery Capacity: </strong></label>
+                <select name="battery_power" id="">
+                    <option value="2000">2000 mAh</option>
+                    <option value="4000">4000 mAh</option>
+                    <option value="6000">6000 mAh</option>
+                    <option value="8000">8000 mAh</option>
+                    <option value="10000">10000 mAh</option>
+                    <option value="15000">15000 mAh</option>
+                </select>
+
+                <label for=""> <strong>Screen Resolution: </strong></label>
+                <select name="scr" id="">
+                    <option value="1">240 x 320 px</option>
+                    <option value="2">320 x 480 px</option>
+                    <option value="3">360 x 480 px</option>
+                    <option value="4">400 x 800 px</option>
+                    <option value="5">480 x 800 px</option>
+                    <option value="6">540 x 960 px</option>
+                    <option value="7">640 x 960 px</option>
+                    <option value="8">640 x 1136 px</option>
+                    <option value="9">720 x 1280 px</option>
+                    <option value="10">750 x 1334 px</option>
+                    <option value="11">800 x 1280 px</option>
+                    <option value="12">1080 x 1920 px</option>
+                    <option value="13">1080 x 2340 px</option>
+                    <option value="14">1440 x 2560 px</option>
+                    <option value="15">1440 x 3040 px</option>
+                </select>
+            
+            <p>
+                <input type="submit" value="Find out Price Range"/>
+            </p>
+
+            
+
+        </form>
+
+    </center>
+    
+
+
+</body>
+</html>

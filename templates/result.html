@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>RESULT</title>
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="{{ url_for('static', filename='hometry.css') }}"
+    />
+    <link
+    
+    />
+</head>
+<body>
+    <h1 style="background-color: darkblue;"> RESUT OF PREDICTION </h1>
+    <h2>
+        <center>
+            <img 
+                src="https://pngriver.com/wp-content/uploads/2018/02/download-mobile-cell-phone-in-hand-PNG-transparent-images-transparent-backgrounds-PNGRIVER-COM-Falcon_Elite_x3_q3_fy16_KSP3_feature5.png" style="width:50%; height:auto";
+            /> <br>
+
+            <strong, style="font-size:20px"> CELLPHONE SPECS: </strong> <br>
+
+            <p, style="font-size:20px">
+                RAM: {{ram}} GB <br> 
+                Front Cam: {{fc}} MP <br> 
+                Primary Cam: {{pc}} MP <br>
+                Battery Power: {{battery_power}} mAh <br>
+                Screen Resolution: {{scr}} px <br> 
+    
+                <h3 style="text-underline-position: below"> Cost Range Prediction: {{prediksi}} </h3>
+            </p>
+
+            <h4> Top 3 Internal Memory and Mobile weight based on cost range prediction:</h4>
+            <table class="table my-3" style="width: 40%" border="1">
+                <thead class="thead-dark">
+                  <tr align="center">
+                    <th scope="col" width="25">No</th>
+                    <th scope="col">Internal Memory (GB)</th>
+                    <th scope="col" >Mobile Weight (gr) </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr align="center">
+                    <th scope="row">1</th>
+                    <td align="center"><strong>{{ df_rec[0]['int_memory'][0] }}</strong></td>
+                    <td align="center"><strong>{{ df_rec[0]['mobile_wt'] }}</strong></td>
+                  </tr>
+                  <tr align="center">
+                    <th scope="row">2</th>
+                    <td align="center"><strong>{{ df_rec[1]['int_memory'][0] }}</strong></td>
+                    <td align="center"><strong>{{ df_rec[1]['mobile_wt'] }}</strong></td>
+                  </tr>
+                  <tr align="center">
+                    <th scope="row">3</th>
+                    <td align="center"><strong>{{ df_rec[2]['int_memory'][0] }}</strong></td>
+                    <td align="center"><strong>{{ df_rec[2]['mobile_wt'] }}</strong></td>
+                  </tr>
+                </tbody>
+  
+              </table>
+
+        
+
+            <form action="http://localhost:1234/">
+                <p> 
+                <input type="submit" value="Back">
+                </p>
+            </form>
+                    
+        </center>
+
+    </h2>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
