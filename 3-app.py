@@ -8,12 +8,16 @@ import json
 import requests
 import os
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sb
 import joblib
 import warnings
 warnings.filterwarnings("ignore")
 
 app = Flask(__name__)
 df = pd.read_csv('train.csv')
+app.config['upload_folder']='images'
+
 
 # HOME ROUTE =========================================================================================================================
 
@@ -177,11 +181,11 @@ def post():
         prediksi = 'high cost'
     elif prediksi == 3:
         prediksi = 'very high cost'
-    
+
+
     print('ram: ', ram, 'fc: ', fc,'pc: ', pc, 'battery_power: ', battery_power, 'scr: ', scr, 'prediksi: ', prediksi)
 
     return render_template('result.html', prediksi = prediksi, ram = ram, fc = fc, pc = pc, battery_power = battery_power, scr = scr, df_rec = listrekomen)
-
     
 # ERROR ROUTE =================================================================================================================================================================
 
