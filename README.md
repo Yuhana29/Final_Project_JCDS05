@@ -49,11 +49,11 @@ In short, the cellphone cost classification system would be presented as below:
 
    MYSQL
 
-   ![MYSQL](images/mysqlstorage.png)
+   ![MYSQL](images/mysql.PNG)
 
    MongoDB
 
-   ![MONGODB](images/mongodbstorage.png)
+   ![MONGODB](images/mongodbstorage.PNG)
 
 
 __KINDLY ENJOY IT :)__
