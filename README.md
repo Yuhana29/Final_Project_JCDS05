@@ -43,4 +43,17 @@ In short, the cellphone cost classification system would be presented as below:
 
     If you want to predict again, you can hit the 'back' button which will directly send you to the home page
 
+3. Storing to MYSQL and MongoDB
+
+   The desired cellphone specs along with the cost classification prediction and the suitable internal memory and mobile weight will be stored to MYSQL Database and MongoDB Database as below:
+
+   MYSQL
+
+   ![MYSQL](images/mysqlstorage.png)
+
+   MongoDB
+
+   ![MONGODB](images/mongodbstorage.png)
+
+
 __KINDLY ENJOY IT :)__

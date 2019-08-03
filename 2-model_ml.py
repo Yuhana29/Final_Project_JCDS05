@@ -43,8 +43,8 @@ print('Accuracy LGR: ', acc_LGR * 100, '%')                         # Accuracy L
 
 # prediction of best price (Logistic Regression)
 pred_LGR = model_LGR.predict(xtest)
-print('prediction LGR (y prediction): ', pred_LGR[0])
-print('y real value: ', ytest.iloc[0])
+# print('prediction LGR (y prediction): ', pred_LGR[0])
+# print('y real value: ', ytest.iloc[0])
 
 # ====================================================   RANDOM FOREST CLASSIFIER ==============================================================================================================================================
 
@@ -59,8 +59,8 @@ print('Accuracy RF: ', acc_RF * 100, '%')                         # Accuracy RF:
 
 # prediction of best price (Random Forest Classifier)
 pred_RF = model_RF.predict(xtest)
-print('prediction RF (y prediction): ', pred_RF[0])
-print('y real value: ', ytest.iloc[0])
+# print('prediction RF (y prediction): ', pred_RF[0])
+# print('y real value: ', ytest.iloc[0])
 
 
 # ====================================================   KNN (K-NEAREST NEIGHBORS) ==============================================================================================================================================
@@ -88,8 +88,10 @@ print('Accuracy KNN: ', acc_knn * 100, '%')                         # Accuracy K
 
 # prediction of best price (K-NEAREST NEIGHBORS)
 pred_knn = model_knn.predict(xtest)
-print('prediction KNN (y prediction): ', pred_knn[0])
-print('y real value: ', ytest.iloc[0])
+# print('prediction KNN (y prediction): ', pred_knn[0])
+# print('y real value: ', ytest.iloc[0])
+pred1 = model_knn.predict([[512, 2000, 1000, 3000, 123, 123]])
+print(pred1)
 
 # # ====================================================== IMPORT JOBLIB ========================================================================================================================================================
 

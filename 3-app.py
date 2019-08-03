@@ -12,14 +12,31 @@ import matplotlib.pyplot as plt
 import seaborn as sb
 import joblib
 import warnings
+import mysql.connector
+from pymongo import MongoClient
 warnings.filterwarnings("ignore")
 
 app = Flask(__name__)
 df = pd.read_csv('train.csv')
 app.config['upload_folder']='images'
 
+# CONNECTING TO MYSQL ======================================================================================================================
 
-# HOME ROUTE =========================================================================================================================
+sqldb = mysql.connector.connect(
+    host = 'localhost',
+    user = 'karinaps',
+    passwd = 'Kimtaehyung1809',
+    database = 'mobile_project'
+)
+mycursor = sqldb.cursor()
+
+# CONNECTING TO MONGODB ====================================================================================================================
+
+client_mongo = MongoClient('mongodb://localhost:27017/')
+mobileproject_mongo = client_mongo['mobile_project']
+mobile_coll = mobileproject_mongo['mobile_coll']
+
+# HOME ROUTE ===============================================================================================================================
 
 @app.route('/')
 def home():
@@ -29,11 +46,12 @@ def home():
 
 @app.route('/post', methods = ['POST'])
 def post():
-    ram = int(request.form['ram'])
-    fc = int(request.form['fc'])
-    pc = int(request.form['pc'])
-    battery_power = int(request.form['battery_power'])
-    scr = int(request.form['scr'])
+    body = request.form
+    ram = int(body['ram'])
+    fc = int(body['fc'])
+    pc = int(body['pc'])
+    battery_power = int(body['battery_power'])
+    scr = int(body['scr'])
 
     if scr == 1:
         px_width = 240
@@ -172,20 +190,52 @@ def post():
     
     # print(listrekomen)
     # print(listrekomen[0]['mobile_wt'])
+    # print(listrekomen['int_memory'])
 
     if prediksi == 0:
-        prediksi = 'low cost'
+        prediksi1 = 'low cost'
     elif prediksi == 1:
-        prediksi = 'medium cost'
+        prediksi1 = 'medium cost'
     elif prediksi == 2:
-        prediksi = 'high cost'
+        prediksi1 = 'high cost'
     elif prediksi == 3:
-        prediksi = 'very high cost'
+        prediksi1 = 'very high cost'
 
+    # INPUT THE RESULT TO MYSQL DATABASE =====================================================================================================================================================================================================================================================================================================================================
+
+    data = dict(body)
+    data['cost_category'] = prediksi1
+    data['internal_memory'] = rekomen1['int_memory'][0].item()
+    data['mobile_weight'] = rekomen1['mobile_wt'].item()
+    data['pixel_height'] = px_height
+    data['pixel_width'] = px_width
+    # hapus = mycursor.execute('delete from mobile_table')
+    mulai = mycursor.execute('alter table mobile_table auto_increment = 1')
+    query = "INSERT INTO `mobile_project`.`mobile_table` (`ram`, `front_camera`, `primary_camera`, `battery_power`,`pixel_height`, `pixel_width`, `cost_category`, `internal_memory`, `mobile_weight`) VALUES (%(ram)s, %(fc)s, %(pc)s, %(battery_power)s, %(pixel_height)s, %(pixel_width)s, %(cost_category)s, %(internal_memory)s, %(mobile_weight)s)"
+
+    mycursor.execute(query, data)
+    sqldb.commit()
+
+    # print(data)
+
+    # INPUT THE RESULT TO MONGODB DATABASE ======================================================================================================================================================================================================================================================================================================================================
+
+    data1 = dict(body)
+    data1['cost_category'] = prediksi1
+    data1['internal_memory'] = rekomen1['int_memory'][0].item()
+    data1['mobile_weight'] = rekomen1['mobile_wt'].item()
+    data1['pixel_height'] = px_height
+    data1['pixel_width'] = px_width
+    del data1['scr']
+    # print(data1)
+    # hapus1 = mobile_coll.delete_many({})
+    addNew = mobile_coll.insert(data1)
+
+    #===============================================================================================================================================================================================================================================================================================================================================================================
 
     print('ram: ', ram, 'fc: ', fc,'pc: ', pc, 'battery_power: ', battery_power, 'scr: ', scr, 'prediksi: ', prediksi)
 
-    return render_template('result.html', prediksi = prediksi, ram = ram, fc = fc, pc = pc, battery_power = battery_power, scr = scr, df_rec = listrekomen)
+    return render_template('result.html', prediksi = prediksi1, ram = ram, fc = fc, pc = pc, battery_power = battery_power, scr = scr, df_rec = listrekomen)
     
 # ERROR ROUTE =================================================================================================================================================================
 
@@ -198,7 +248,7 @@ def errornotfound():
 def notFound404(error):
     return render_template('errortry.html')
 
-# ACTIVATE SERVER ==========================================================================================================
+# ACTIVATE SERVER ====================================================================================================================================================================================
 
 if __name__ == '__main__':
         model = joblib.load('model_ml')
